@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+	<br>
+	<div class="tab-content">
+		<h3>Pesquisa por Datas</h3>
+		<br> <br>
+		<div class="row">
+			<div class="form-group col-md-2">
+				<label for="exampleInputName">De:</label> <input type="text"
+					class="form-control" data-ng-model="de">
+			</div>
+			<div class="form-group  col-md-2">
+				<label for="exampleInputName2">Ate:</label> <input type="text"
+					class="form-control" placeholder="Apelido" data-ng-model="ate">
+			</div>
+			<div class="form-group  col-md-2">
+
+				<label>Pronvicia: <select
+					data-ng-model="search.endereco.provincia" class="form-control">
+						<option data-ng-repeat="p in pronviciass">{{p}}</option>
+				</select></label>
+			</div>
+			<div>
+				<label></label> <input type="button" ng-click="exportToPdf()"
+					class="btn btn-danger" value="PDf">
+			</div>
+
+		</div>
+		<br>
+		<h5>Contrato Indeterminado</h5>
+		<br>
+		<table id="customers" class="table table-hover">
+			<thead>
+				<tr>
+
+					<th>Nome</th>
+					<th>Genero</th>
+					<th>Provincia</th>
+
+					<th>Posiccao</th>
+					<th>Data inicio</th>
+					<th>Data fim</th>
+					<th>Departamento</th>
+					<th>Supervisor</th>
+
+
+
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr
+					data-ng-repeat="p in record | filter:search:strict | dateRange : de : ate">
+					<td>{{p.nome}}</td>
+
+
+					<td>{{p.genero}}</td>
+					<td>{{p.endereco.provincia}}</td>
+
+					<td>{{p.posiccao.descricao}}</td>
+					<th>{{p.datainicio | date: 'dd MMMM yyyy'}}</th>
+
+					<th>{{p.datafim | date: 'dd MMMM yyyy'}}</th>
+					<td>{{p.departamento.descricao}}</td>
+					<td>{{p.supervisor.descricao}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+
+</html>

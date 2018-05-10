@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Teste</title>
+</head>
+<br>
+<br>
+<body>
+	<h3>Alerta de Termino de Contrato</h3>
+	<br>
+	<input type="search" ng-model="q" placeholder="Pesquise pelo nome..."
+		aria-label="Pesquise pelo nome" />
+
+	<button ng-click="exportToPdf()" class="btn btn-danger btn-rounded"
+		ng-show="t">PDF</button>
+	<br>
+	<div class="content">
+		<br> <label>Imprimir<input type="checkbox" ng-model="t"><br></label>
+		<table id="customers" class="table table-hover">
+			<thead ng-show="t">
+				<tr>
+					<td colspan="18" style="text-align: left"><img
+						src="app/imgs/jhpiegoMin.png" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="8" style="text-align: right"><h5>Doc.No.:
+							{{d| date: 'ddMMyymm:ss'}}</h5></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="8" style="text-align: right"><h5>Data: {{d|
+							date: 'dd MMMM yyyy HH:mm:ss'}}</h5></td>
+				</tr>
+				<tr>
+					<td><br> <br> <br> <br> <br> <br>
+						<br></td>
+					<td colspan="4" style="text-align: center;"><h3>Alerta Termino
+							P/Serviço</h3></td>
+				</tr>
+			</thead>
+			<tr>
+				<th>Nome</th>
+
+				<th>Posicao</th>
+				<th>Programa</th>
+				<th>Data Inicio</th>
+				<th>Data fim</th>
+
+
+				<th>Tempo restante</th>
+			</tr>
+			<tr ng-repeat="employee in listap  | filter:q as results">
+				<td>{{employee.nome}}</td>
+				<td>{{employee.posicao.descricao}}</td>
+				<td>{{employee.programa.descricao}}</td>
+				<td>{{employee.datainicio | date: 'dd/MM/yyyy'}}</td>
+
+				<td>{{employee.datafim | date: 'dd/MM/yyyy'}}</td>
+				<td class="aviso" style="font-size: 13">{{getExp(employee.datafim)}}</td>
+			</tr>
+		</table>
+		<br>
+	</div>
+</body>
+</html>

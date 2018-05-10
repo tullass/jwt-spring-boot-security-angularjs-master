@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Teste</title>
+<body >
+	<h1 style="color:red">Supervisor</h1>
+	<form>
+
+		<label>Descricao</label> <input type="text"
+			ng-model="supervisor.descricao"> <br><br>
+		<button type="button" data-ng-click="create(supervisor)">Create</button>
+		<br>	<table border="1" class="table table-hover">
+			<tr>
+				<th>Descricao</th>
+				<th>Accoes</th>
+
+			</tr>
+			<tr data-ng-repeat="supervisor in lista">
+				<td>{{supervisor.descricao}}</td>
+
+				<td>
+					<button type="button" data-ng-click="alterar(supervisor)">Alterar</button>
+<!-- 					<button type="button" data-ng-click="deletar(supervisor)">Excluir</button> -->
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>

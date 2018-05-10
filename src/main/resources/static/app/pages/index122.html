@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<br>
+	<div class="row">
+		<h4 style="color: red">Programas Consultor</h4>
+		<br> <br>
+
+		<div class="form-group col-md-3">
+			Nome <input type="search" ng-model="search.nome"
+				placeholder="escreva o nome..." aria-label="escreva o nome">
+		</div>
+
+	</div>
+
+	<br>
+	<br>
+	<div>
+
+
+		<br /> <br /> <label>Imprimir<input type="checkbox"
+			ng-model="t"><br></label>
+		<table border="1" id="customers"
+			class="table table-stripped table-bordered table-hover">
+			<thead ng-show="t">
+				<tr>
+					<td colspan="18" style="text-align: left"><img
+						src="app/imgss/jhpiegoMin.png" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="8" style="text-align: right"><h5>Doc.No.:
+							{{d| date: 'ddMMyymm:ss'}}</h5></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td colspan="8" style="text-align: right"><h5>Data: {{d|
+							date: 'dd MMMM yyyy HH:mm:ss'}}</h5></td>
+				</tr>
+				<tr>
+					<td><br> <br> <br> <br> <br> <br>
+						<br></td>
+					<td colspan="4" style="text-align: center;"><h3>Programa
+							Consultor</h3></td>
+				</tr>
+			</thead>
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>DOD</th>
+					<th>%</th>
+					<th>CDC</th>
+					<th>%</th>
+
+					<th>MCP</th>
+					<th>%</th>
+					<th>Mozal</th>
+
+					<th>%</th>
+					<th>A_Free</th>
+					<th>%</th>
+					<th>TIP TOP</th>
+					<th>%</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in itemss  | filter:search:strict">
+					<td>{{item.nome}}</td>
+					<td>{{item.programa.pdod}}</td>
+					<td>{{item.programa.p1}}</td>
+					<td>{{item.programa.pcdc}}</td>
+					<td>{{item.programa.p2}}</td>
+					<td>{{item.programa.pmcp}}</td>
+					<td>{{item.programa.p3}}</td>
+
+					<td>{{item.programa.pmozal}}</td>
+					<td>{{item.programa.p4}}</td>
+
+					<td>{{item.programa.paids}}</td>
+					<td>{{item.programa.p5}}</td>
+
+					<td>{{item.programa.ptip}}</td>
+					<td>{{item.programa.p6}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+
+</html>

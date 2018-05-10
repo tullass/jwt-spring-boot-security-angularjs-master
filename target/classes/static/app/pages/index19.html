@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Teste</title>
+
+</head>
+
+<body>
+	<br>
+	<div ng-show="myVar">
+		<div class="form-group col-md-6">
+
+			<input type="date" ng-model="birthdate" size="30"
+				class="aviso form-control">
+		</div>
+		<div class="form-group col-md-6">
+			<button type="button" data-ng-click="ches(myVar)"
+				class="btn btn-default">Fechar</button>
+		</div>
+
+	</div>
+	<div data-ng-cloak>
+		<br>
+		<div class="tab-content" data-ng-switch on="stage">
+			<form name="multiStepForm">
+				<h3 class="text-center">Contrato Consultor</h3>
+
+				<div data-ng-switch-default>
+					<div>
+						<br>
+						<h4>Dados Pessoaais</h4>
+						<br /> <br />
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputName">Nome:</label> <input type="text"
+									class="form-control" name="nome" id="nome" placeholder="Nome"
+									data-ng-model="consultor.nome" required> <span
+									class="aviso"
+									ng-show="multiStepForm.nome.$dirty && multiStepForm.nome.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-4">
+								<label for="exampleInputName2">Apelido:</label> <input
+									type="text" class="form-control" name="apelido" id="apelido"
+									placeholder="Apelido" data-ng-model="consultor.apelido"
+									required> <span class="aviso"
+									ng-show="multiStepForm.apelido.$dirty && multiStepForm.apelido.$error.required ">Esse
+									campo e obrigatorio</span>
+
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputDate">Data de Nascimento:</label>
+								<button type="button" data-ng-click="ches(myVar)"
+									class="btn btn-default aviso">Habilitar Data</button>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="exampleInputAge">Idade:</label> <input type="text"
+									ng-value="calculateAge(birthdate)">
+
+
+							</div>
+
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label>Estado Civil: <select id="civil" name="civil"
+									data-ng-model="consultor.civil" class="form-control" required>
+										<option>Casado</option>
+										<option>Solteiro</option>
+										<option>Divoriciado</option>
+										<option>Viuvo</option>
+								</select>
+								</label> <span class="aviso"
+									ng-show="multiStepForm.civil.$dirty && multiStepForm.civil.$error.required ">Esse
+									campo e obrigatorio</span>
+
+							</div>
+							<div class="form-group col-md-4">
+								<label for="exmpleInputGender">Gênero:</label><br> <input
+									type="radio" data-ng-model="consultor.genero" id="idMale"
+									value="Male"> Masculino &nbsp; &nbsp; &nbsp; <input
+									type="radio" data-ng-model="consultor.genero" id="idFemale"
+									value="Female"> Feminino
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label>Nível Académico: <select
+									data-ng-model="consultor.academico" id="level" name="level"
+									class="form-control col-md-4" required>
+										<option>Médio</option>
+										<option>Licenciado</option>
+										<option>Mestrado</option>
+								</select>
+								</label> <span class="aviso"
+									ng-show="multiStepForm.level.$dirty && multiStepForm.level.$error.required ">Esse
+									campo e obrigatorio</span>
+
+							</div>
+							<div class="form-group col-md-4">
+								<label for="exampleInputEducation">Area de Formação:</label> <input
+									type="text" class="form-control" name="exampleInputEducation"
+									id="idEducation" placeholder="Escreva a Formação">
+
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group  col-md-4">
+								<label for="exampleInputSkype">Email:</label> <input type="text"
+									data-ng-model="consultor.email" class="form-control" id="email"
+									name="email" placeholder="Escreva o Skype" required> <span
+									class="aviso"
+									ng-show="multiStepForm.email.$dirty && multiStepForm.email.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="exampleInputPhone">Telefone I:</label> <input
+									type="number" data-ng-model="consultor.telefone1"
+									class="form-control" id="telI" name="telI"
+									placeholder="+258 *********" required> <span
+									class="aviso"
+									ng-show="multiStepForm.telI.$dirty && multiStepForm.telI.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-4">
+								<label for="exampleInputPhone2">Telefone II:</label> <input
+									type="number" data-ng-model="consultor.telefone2"
+									class="form-control" id="telII" name="telII"
+									placeholder="+258 *********" required> <span
+									class="aviso"
+									ng-show="multiStepForm.telII.$dirty && multiStepForm.telII.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+						</div>
+						<button type="button" class="btn btn-success m-b-sm"
+							data-toggle="modal" data-target="#myModal">Adicionar
+							Contactos de Emergência</button>
+					</div>
+
+
+
+					<ul class="pager wizard">
+						<li class="next"><a data-ng-click="next('stage1')"
+							class="btn btn-default" ng-disabled="multiStepForm.$invalid">Seguir</a></li>
+
+					</ul>
+
+				</div>
+			</form>
+			<form name="multiStepfirst">
+				<div data-ng-switch-when="stage1">
+					<div class="form-group">
+						<h4>Local de Residência</h4>
+						<br>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputNationality">Nacionalidade:</label> <input
+									type="text" class="form-control" name="nac" id="nac"
+									placeholder="Nacionalidade"
+									data-ng-model="consultor.endereco.nacionalidade" required>
+								<span class="aviso"
+									ng-show="multiStepfirst.nac.$dirty && multiStepfirst.nac.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Pronvicia: <select class="form-control"
+									data-ng-model="contrato.endereco.provincia">
+										<option data-ng-repeat="p in pronvicias">{{p}}</option>
+								</select>
+								</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="exampleInputBirthplace">Localidade:</label> <input
+								type="text" data-ng-model="consultor.endereco.localidade"
+								class="form-control" id="loc" name="loc"
+								placeholder="Escreva a Localidade" required> <span
+								class="aviso"
+								ng-show="multiStepfirst.loc.$dirty && multiStepfirst.loc.$error.required ">Esse
+								campo e obrigatorio</span>
+						</div>
+						<div class="form-group  col-md-4">
+							<label for="exampleAddress">Bairro:</label> <input type="text"
+								class="form-control" data-ng-model="consultor.endereco.bairro"
+								id="bai" name="bai" placeholder="Nome do Bairro" required>
+							<span class="aviso"
+								ng-show="multiStepfirst.bai.$dirty && multiStepfirst.bai.$error.required ">Esse
+								campo e obrigatorio</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-4">
+							<label for="exampleInputQuarteirao">Quarteirão:</label> <input
+								type="number" class="form-control"
+								data-ng-model="consultor.endereco.quarterao" id="qtr" name="qtr"
+								placeholder="Nr do quarteirao" required> <span
+								class="aviso"
+								ng-show="multiStepfirst.qtr.$dirty && multiStepfirst.qtr.$error.required ">Esse
+								campo e obrigatorio</span>
+						</div>
+						<div class="form-group  col-md-4">
+							<label for="exampleInputCasa">N° Casa:</label> <input
+								type="number" data-ng-model="consultor.endereco.casa"
+								class="form-control" id="cas" name="cas"
+								placeholder="Nr da casa" required> <span class="aviso"
+								ng-show="multiStepfirst.cas.$dirty && multiStepfirst.cas.$error.required ">Esse
+								campo e obrigatorio</span>
+						</div>
+					</div>
+
+					<ul class="pager wizard">
+						<li class="previous"><a data-ng-click="back('stage')"
+							class="btn btn-default">Voltar</a></li>
+						<li class="next"><a data-ng-click="next('stage2')"
+							data-ng-hide="multiStepfirst.$invalid" class="btn btn-default">Seguir</a></li>
+					</ul>
+				</div>
+
+			</form>
+			<form name="multiStepAdmin">
+				<div data-ng-switch-when="stage2">
+					<div class="form-group">
+						<h4>Dados Administrativos</h4>
+						<br>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label>Departamento: <select class="form-control"
+									data-ng-model="consultor.departamento.id" required>
+										<option data-ng-repeat="dep in departamentos"
+											value="{{dep.id}}">{{dep.descricao}}</option>
+								</select>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+<!-- 								<label>Programa: <select class="form-control" required> -->
+<!-- 										<option data-ng-repeat="p in programas" value="{{p.id}}">{{p.descricao}}</option> -->
+<!-- 								</select> -->
+<!-- 								</label> -->
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label>Posicao: <select class="form-control"
+									data-ng-model="consultor.posiccao.id" required>
+										<option data-ng-repeat="p in posicaoes" value="{{p.id}}">{{p.descricao}}</option>
+								</select>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Categoria: <select class="form-control"
+									data-ng-model="consultor.categoria" id="idCategory"
+									class="form-control col-md-4" required>
+										<option data-ng-repeat="c in cats">{{c}}</option>
+								</select>
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputProbatorio">Período Probatório:
+									<select class="form-control col-md-4"
+									data-ng-model="consultor.periodo" id="idProbatorio" required>
+										<option>3 meses</option>
+										<option>6 meses</option>
+								</select>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="exampleInputDate1">Data de Início:</label> <input
+									type="date" class="form-control"
+									data-ng-model="consultor.datainicio" id="idDateStart1"
+									placeholder="Período Probatório" required>
+
+							</div>
+							<div class="form-group col-md-4">
+								<label for="exampleInputDate1">Data de Término:</label> <input
+									type="date" class="form-control"
+									data-ng-model="consultor.datafim" id="idDateEnd1"
+									placeholder="Período Probatório" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputPhone">Experiência Profissional:</label>
+								<input type="number" class="form-control" name="exp" id="exp"
+									placeholder="Por anos" required> <span class="aviso"
+									ng-show="multiStepAdmin.exp.$dirty && multiStepAdmin.exp.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-4">
+								<label for="exampleInputSkype">Último local de trabalho:</label>
+								<input type="text" class="form-control" name="ult" id="ult"
+									placeholder="Nome" required> <span class="aviso"
+									ng-show="multiStepAdmin.ult.$dirty && multiStepAdmin.ult.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputPhone">Salário Base:</label> <input
+									type="number" data-ng-model="consultor.salariobase" step="0.00"
+									class="form-control" name="salb" id="salb"
+									placeholder="Ex:xxxx.**" required> <span class="aviso"
+									ng-show="multiStepAdmin.salb.$dirty && multiStepAdmin.salb.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-4">
+								<label for="exampleInputPhone2">Salário Actual:</label> <input
+									type="number" data-ng-model="consultor.salarioactual"
+									step="0.00" class="form-control" id="sala" name="sala"
+									placeholder="Ex:xxxx.**" required> <span class="aviso"
+									ng-show="multiStepAdmin.sala.$dirty && multiStepAdmin.sala.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-3">
+								<label>Nível Salarial: <select id="idPLevel"
+									class="form-control col-md-3" required>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+								</select>
+								</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputPhone">Número de Dependentes:</label> <input
+									type="number" class="form-control" name="ndep" id="ndep"
+									placeholder="Dependentes"> <span class="aviso"
+									ng-show="multiStepAdmin.ndep.$dirty && multiStepAdmin.ndep.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-4">
+								<label for="exampleInputSkype">NUIT:</label> <input
+									type="number" data-ng-model="consultor.nuit"
+									class="form-control" id="nuit" name="nuit"
+									placeholder="Ex:*********" required> <span
+									class="aviso"
+									ng-show="multiStepAdmin.nuit.$dirty && multiStepAdmin.nuit.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label for="exampleInputPhone">INSS:</label> <input
+									type="number" data-ng-model="consultor.inss"
+									class="form-control" id="inss" placeholder="Ex:*******"
+									name="inss" required> <span class="aviso"
+									ng-show="multiStepAdmin.inss.$dirty && multiStepAdmin.inss.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+							<div class="form-group  col-md-4">
+								<label for="exampleInputPhone2">NIB:</label> <input
+									type="number" data-ng-model="consultor.nib"
+									class="form-control" id="nib" name="nib"
+									placeholder="Ex:***************" required> <span
+									class="aviso"
+									ng-show="multiStepAdmin.nib.$dirty && multiStepAdmin.nib.$error.required ">Esse
+									campo e obrigatorio</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-4">
+								<label>Supervisor: <select class="form-control"
+									data-ng-model="consultor.supervisor.id" required>
+										<option data-ng-repeat="dep in supervisores"
+											value="{{dep.id}}">{{dep.descricao}}</option>
+								</select>
+								</label>
+							</div>
+							<div class="form-group col-md-4">
+								<label>Gestor: <select class="form-control"
+									data-ng-model="consultor.gestor.id" required>
+										<option data-ng-repeat="dep in gestores" value="{{dep.id}}">{{dep.descricao}}</option>
+								</select>
+								</label>
+							</div>
+						</div>
+
+
+						<ul class="pager wizard">
+							<li class="previous"><a data-ng-click="back('stage1')"
+								class="btn btn-default">Voltar</a></li>
+							<li class="next"><a data-ng-click="next('stage3')"
+								class="btn btn-default">Seguir</a></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+			<form name="multStepAdminn">
+				<div data-ng-switch-when="stage3">
+					<div class="form-group">
+						<h4>Login</h4>
+						<br>
+
+						<div class="row">
+
+							<div class="form-group col-md-4">
+								<label for="exampleInputEmail">Email:</label> <input
+									type="email" class="form-control" name="exampleInputEmail"
+									id="idEmail" placeholder="Escreva o email">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="exampleInputPassword1">Password:</label> <input
+									type="password" class="form-control"
+									name="exampleInputPassword1" id="exampleInputPassword1"
+									placeholder="Introduza Password">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="exampleInputPassword2">Confirmarf Password:</label>
+								<input type="password" class="form-control"
+									name="exampleInputPassword2" id="exampleInputPassword2"
+									placeholder="Confirme a Password">
+							</div>
+						</div>
+
+						<ul class="pager wizard">
+							<li class="previous"><a data-ng-click="back('stage3')"
+								class="btn btn-default">Voltar</a></li>
+							<li class="next"><a data-ng-click="next('stage4')"
+								class="btn btn-default">Seguir</a></li>
+						</ul>
+					</div>
+				</div>
+			</form>
+			<form>
+				<div data-ng-switch-when="stage4">
+					<h4>Confirmar</h4>
+					<br>
+					<p class="aviso">Dados Pessoais</p>
+					<div class="row">
+
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Nome:</label>
+							<p class="aviso">{{consultor.nome}}</p>
+						</div>
+						<div class="form-group  col-md-3">
+							<label for="exampleInputName2">Apelido:</label>
+							<p class="aviso">{{consultor.apelido}}</p>
+						</div>
+
+
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Data_Nascimento:</label>
+							<p class="aviso">{{consultor.birthdate}}</p>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Estado_Civil:</label>
+							<p class="aviso">{{consultor.civil}}</p>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Genero:</label>
+							<p class="aviso">{{consultor.genero}}</p>
+						</div>
+						<div class="form-group  col-md-3">
+							<label for="exampleInputName2">Nivel Academico:</label>
+							<p class="aviso">{{consultor.academico}}</p>
+						</div>
+
+
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Email:</label>
+							<p class="aviso">{{consultor.email}}</p>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Telefone I</label>
+							<p class="aviso">{{consultor.telefone1}}</p>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Telefone II:</label>
+							<p class="aviso">{{consultor.telefone2}}</p>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="exampleInputName">Click para Editar:</label>
+							<button data-ng-click="back('stage')" class="btn btn-danger">Editar
+							</button>
+						</div>
+					</div>
+
+
+
+
+					<ul class="pager wizard">
+						<li class="previous"><a data-ng-click="back('stage4')"
+							class="btn btn-default">Voltar</a></li>
+					</ul>
+					<button type="button" class="btn btn-success"
+						data-ng-click="create(consultor)">Guardar</button>
+
+				</div>
+
+			</form>
+
+		</div>
+		<form>
+
+
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Contactos de
+								Emergência</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<div class="row">
+									<h5>Contacto 1:</h5>
+									<div class="form-group  col-md-4">
+										<label for="exampleInputNome1">Nome:</label> <input
+											type="text" class="form-control"
+											data-ng-model="consultor.consultor.nome1" id="idInputNome1"
+											placeholder="Nome">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="exampleInputTelefone1">Telefone:</label> <input
+											type="number" class="form-control"
+											data-ng-model="consultor.consultor.telefone1"
+											id="idInputTelefone1" placeholder="*********">
+									</div>
+									<div class="form-group  col-md-3">
+										<label>Parentesco: <select
+											data-ng-model="consultor.parente1">
+												<option data-ng-repeat="p in pars">{{p}}</option>
+										</select>
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<h5>Contacto 2:</h5>
+									<div class="form-group  col-md-4">
+										<label for="exampleInputNome2">Nome:</label> <input
+											type="text" class="form-control"
+											data-ng-model="consultor.consultor.nome2" id="idInputNome2"
+											placeholder="Nome">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="exampleInputTelefone2">Telefone:</label> <input
+											type="number" data-ng-model="consultor.consultor.telefone2"
+											class="form-control" id="idInputTelefone2"
+											placeholder="*********">
+									</div>
+									<div class="form-group  col-md-3">
+										<label>Parentesco: <select
+											data-ng-model="consultor.consultor.parente2"
+											id="idParentesco2" class="form-control col-md-4">
+												<option data-ng-repeat="d in pars">{{d}}</option>
+										</select>
+										</label>
+									</div>
+								</div>
+								<div class="row">
+									<h5>Contacto 3:</h5>
+									<div class="form-group  col-md-4">
+										<label for="exampleInputNome3">Nome:</label> <input
+											type="text" class="form-control"
+											data-ng-model="consultor.consultor.nome3" id="idInputNome3"
+											placeholder="Nome">
+									</div>
+									<div class="form-group col-md-4">
+										<label for="exampleInputTelefone3">Telefone:</label> <input
+											type="number" data-ng-model="consultor.consultor.telefone3"
+											class="form-control" id="idInputTelefone3"
+											placeholder="*********">
+									</div>
+									<div class="form-group  col-md-3">
+										<label>Parentesco: <select
+											data-ng-model="consultor.consultor.parente3"
+											id="idParentesco3" class="form-control col-md-4">
+												<option data-ng-repeat="s in pars">{{s}}</option>
+
+										</select>
+										</label>
+									</div>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" data-ng-click="limpar()"
+									class="btn btn-default" data-dismiss="modal">Fechar</button>
+								<button type="submit" class="btn btn-success"
+									data-dismiss="modal">Adicionar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

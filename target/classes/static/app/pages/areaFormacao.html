@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Teste</title>
+<body>
+	<h1>Areaa Cientifica</h1>
+	<form>
+
+		<label>Descricao</label> <input type="text" ng-model="areaa.descricao">
+		<br>
+		<button type="button" data-ng-click="create(areaa)">Create</button>
+		<br>
+		<table border="1">
+			<tr>
+				<th>CodTurma</th>
+				<th>Descricao</th>
+				<th>Preco</th>
+
+			</tr>
+			<tr data-ng-repeat="areaa in lista">
+				<td>{{areaa.id}}</td>
+				<td>{{areaa.descricao}}</td>
+
+				<td>
+					<button type="button" data-ng-click="alterar(areaa)">Alterar</button>
+					<button type="button" data-ng-click="deletar(areaa)">Excluir</button>
+				</td>
+			</tr>
+		</table>
+		teste05 Tets{{teste}}
+	</form>
+
+	
+</body>
+</html>
